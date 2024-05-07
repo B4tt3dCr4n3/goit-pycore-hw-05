@@ -10,9 +10,9 @@ def generator_numbers(text: str):
     '''
     Generator function that extracts all numbers from a given text.
     '''
-    pattern = r'\b[-+]?[0-9]*\.?[0-9]+\b'
-    for match in re.findall(pattern, text):
-        yield float(match.strip())
+    pattern = r'\b[-+]?[0-9]*\.?[0-9]+\b' # Regular expression pattern to match numbers
+    for match in re.findall(pattern, text): # Find all matches in the text
+        yield float(match.strip()) # Yield the number
 
 def sum_profit(text: str, func: Callable):
     '''
@@ -27,6 +27,6 @@ def sum_profit(text: str, func: Callable):
 TEXT = '''The employee's total income consists of several parts: 1000.01
 as the main income, supplemented by additional income of 27.45 and 324.00 USD.'''
 
-total_income = sum_profit(TEXT, generator_numbers)
+total_income = sum_profit(TEXT, generator_numbers) # Sum all numbers in the text
 
 print(f"Total income: {total_income}") # Total income: 1351.46
