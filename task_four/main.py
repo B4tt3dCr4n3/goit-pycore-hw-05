@@ -13,17 +13,17 @@ def input_error(func):
     '''
     Decorator to handle input errors.
     '''
-    def inner(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except KeyError:
-            return "Contact not found."
-        except ValueError:
-            return "Give me name and phone please."
-        except IndexError:
-            return "Please enter a name and phone number."
+    def inner(*args, **kwargs): # Inner function to handle errors
+        try: # Try to execute the function
+            return func(*args, **kwargs) # Execute the function
+        except KeyError: # Handle key errors
+            return "Contact not found." # Return a message
+        except ValueError: # Handle value errors
+            return "Give me name and phone please." # Return a message
+        except IndexError: # Handle index errors
+            return "Please enter a name and phone number." # Return a message
 
-    return inner
+    return inner # Return the inner function
 
 @input_error
 def parse_input(user_input):
