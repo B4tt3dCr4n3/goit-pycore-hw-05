@@ -16,15 +16,15 @@ def parse_log_line(line: str) -> dict:
 
 def load_logs(file_path: str) -> list:
     """Load logs from a file."""
-    logs = [] # List to store logs
     try: # Try to open the file
         with open(file_path, 'r', encoding='UTF-8') as file: # Open the file
-            for line in file: # Iterate over the lines in the file
-                logs.append(parse_log_line(line)) # Parse the line and add the log to the list
+            logs = list(map(parse_log_line, file)) # Parse each line and add the log to the list
     except FileNotFoundError: # Handle file not found errors 
         print(f"File '{file_path}' not found.") # Print an error message
+        logs = []
     except IOError as e: # Handle I/O errors
         print(f"An error occurred while reading a file: {e}") # Print an error message
+        logs = []
     return logs # Return the list of logs
 
 def filter_logs_by_level(logs: list, level: str) -> list:
