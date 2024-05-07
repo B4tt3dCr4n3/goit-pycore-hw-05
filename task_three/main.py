@@ -18,7 +18,8 @@ def load_logs(file_path: str) -> list:
     """Load logs from a file."""
     try: # Try to open the file
         with open(file_path, 'r', encoding='UTF-8') as file: # Open the file
-            logs = list(map(parse_log_line, file)) # Parse each line and add the log to the list
+            logs = [parse_log_line(line) for line in file] # Parse each line and 
+            # add the log to the list
     except FileNotFoundError: # Handle file not found errors 
         print(f"File '{file_path}' not found.") # Print an error message
         logs = []
